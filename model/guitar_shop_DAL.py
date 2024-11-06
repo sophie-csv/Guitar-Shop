@@ -59,4 +59,4 @@ def write_to_db(data):
 
 def add_category(category):
     data = get_db_as_dict()
-    data[]
+    data
