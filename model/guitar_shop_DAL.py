@@ -59,4 +59,44 @@ def write_to_db(data):
 
 def add_category(category):
     data = get_db_as_dict()
-    data
+    data[category] = {}
+    write_to_db(data)
+
+def delete_category(category):
+    data = get_db_as_dict()
+    del data[category]
+    write_to_db(data)
+
+def get_category(category):
+    data = get_db_as_dict()
+    return data[category]
+
+def get_all_categories_as_list():
+    data = get_db_as_dict()
+    return list(data)
+
+def add_product(category,code,name,price):
+    data = get_db_as_dict()
+    data[category][code] = {
+        "name": name,
+        "price": price
+    }
+    write_to_db(data)
+
+def delete_product(category,code):
+    data = get_db_as_dict()
+    del data[category][code]
+    write_to_db(data)
+
+#has subpoints, multiple keys
+def get_all_products_in_category(category):
+    data = get_db_as_dict()
+    return data[category]
+
+def get_product_name(category, code):
+    data = get_db_as_dict()
+    return data[category][code]
+
+def get_product_price(category, code):
+    data = get_db_as_dict()
+    return data[category][code]['price']
