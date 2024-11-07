@@ -12,3 +12,4 @@ if __name__ == '__main__':
     app.run()
 
 db.set_db()
+add_category
