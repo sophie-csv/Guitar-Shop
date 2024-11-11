@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>My Guitar Shop</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"/>
+</head>
+
+<body>
+<div id="page">
+
+    <div id="header">
+        <h1>Product Manager</h1>
+    </div>
+
+    <div id="main">
+
+        <h1>Product List</h1>
+
+        <div id="sidebar">
+            <!-- display a list of categories -->
+            <h2>Categories</h2>
+            <ul class="nav">
+                {% for category in category_list %}
+                    <li>
+                        <a href="?category_key={{ category }}">
+                            {{ category }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div id="content">
+            <!-- display a table of products -->
+            <h2>{{ category_key }}</h2>
+            <table>
+                <tr>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th class="right">Price</th>
+                    <th>&nbsp;</th>
+                </tr>
+                {% for product in product_list %}
+                    <tr>
+                        <td>{{ product }}</td>
+                        <td>{{ product_list[product]['name'] }}</td>
+                        <td class="right">{{ product_list[product]['price'] }}</td>
+                        <td>
+                            <form action="/delete_product?category_key=category_key" method="post"
+                                  id="delete_product_form">
+                                <input type="hidden" name="product_code"
+                                       value="{{ product }}"/>
+                                <input type="hidden" name="category_key"
+                                       value="{{ category_key }}"/>
+                                <input type="submit" value="Delete"/>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <p><a href="/add_product_form">Add Product</a></p>
+            <p><a href="/category_list">List Categories</a></p>
+        </div>
+    </div>
+
+    <div id="footer">
+        <p>
+            &copy; My Guitar Shop, Inc.
+        </p>
+    </div>
+
+</div>
+</body>
+</html>
