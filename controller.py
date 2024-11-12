@@ -50,5 +50,12 @@ def delete_product():
     db.delete_product(category_key, product_code)
     return redirect(url_for('index', category_key=category_key))
 
+@app.route('/category_list', methods=['GET'])
+def category_list():
+    category_list = db.get_all_categories_as_list()
+    return render_template('category_list.html', category_list=category_list)
+
+
+
 if __name__ == '__main__':
     app.run()

@@ -17,8 +17,17 @@
         <h1>Category List</h1>
         <table>
             <tr>
-                <th>Name</th>
-                <th>&nbsp;</th>
+                {% for category in category_list %}
+                    <tr>
+                    <td class="right">{{ category }}</td>
+                    <td>
+                    <form action="/delete_product?category_key=category_key" method="post"
+                          id="delete_product_form">
+                    <input type="hidden" name="category_key"
+                           value="{{ category_key }}"/>
+                    <input type="submit" value="Delete"/>
+                {% endfor %}
+                </tr>
             </tr>
 
             <!-- add code for the rest of the table here -->
@@ -27,7 +36,7 @@
         <br/>
 
         <h2>Add Category</h2>
-
+        <p> hello</p>
         <!-- add code for the form here -->
 
         <br/>
