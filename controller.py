@@ -43,6 +43,7 @@ def add_product():
     db.add_product(category_key, code, name, price)
     return redirect(url_for('index', category_key=category_key))
 
+
 @app.route('/delete_product', methods=['POST'])
 def delete_product():
     category_key = request.form.get('category_key')
@@ -50,11 +51,25 @@ def delete_product():
     db.delete_product(category_key, product_code)
     return redirect(url_for('index', category_key=category_key))
 
+
 @app.route('/category_list', methods=['GET'])
 def category_list():
     category_list = db.get_all_categories_as_list()
     return render_template('category_list.html', category_list=category_list)
 
+
+@app.route('/add_category', methods=['POST'])
+def add_category():
+    category_key = request.form.get('category')
+    db.add_category(category_key)
+    return redirect(url_for('category_list', category_key=category_key))
+
+
+@app.route('/delete_category', methods=['POST'])
+def delete_category():
+    category_key = request.form.get('category_key')
+    db.delete_category(category_key)
+    return redirect(url_for('category_list'))
 
 
 if __name__ == '__main__':

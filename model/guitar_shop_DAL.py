@@ -141,6 +141,3 @@ def get_product_price(category, code):
     data = get_db_as_dict()
     return data[category][code]['price']
 
-set_db()
-add_category("Kazoo")
-
