@@ -68,8 +68,11 @@ def add_category():
 @app.route('/delete_category', methods=['POST'])
 def delete_category():
     category_key = request.form.get('category_key')
-    db.delete_category(category_key)
-    return redirect(url_for('category_list'))
+    if db.get_all_products_in_category(category_key) == {}:
+        db.delete_category(category_key)
+        return redirect(url_for('category_list'))
+    else:
+        return render_template("error.html", error="Category has products.")
 
 
 if __name__ == '__main__':

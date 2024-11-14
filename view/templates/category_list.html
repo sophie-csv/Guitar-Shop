@@ -22,9 +22,9 @@
                     <td class="right">{{ category }}</td>
                     <td>
                     <form action="/delete_category?category_key=category_key" method="post"
-                          id="delete_product_form">
+                          id="delete_category">
                         <input type="hidden" name="category_key"
-                               value="{{ category_key }}"/>
+                               value="{{ category }}"/>
                         <input type="submit" value="Delete"/>
                     </form>
                     </tr>
